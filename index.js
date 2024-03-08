@@ -35,6 +35,35 @@ class J2M {
     static to_markdown(str) {
         return (
             str
+                // jira emoticons https://confluence.atlassian.com/doc/files/136870/947169184/1/1521512577368/Emoticons.png
+                .replace(/:\)/g, '😊')
+                .replace(/:\(/g, '☹️')
+                .replace(/:p/g, '😛')
+                .replace(/:P/g, '😛')
+                .replace(/:D/g, '😀')
+                .replace(/;\)/g, '😉')
+
+                .replace(/\(y\)/g, '👍')
+                .replace(/\(n\)/g, '👎')
+                .replace(/\(on\)/g, '(ON)')
+                .replace(/\(off\)/g, '(OFF)')
+                .replace(/\(!\)/g, '⚠️')
+
+                .replace(/\(\*\)/g, '⭐')
+                .replace(/\(\*r\)/g, '⭐(red)')
+                .replace(/\(\*g\)/g, '⭐(green)')
+                .replace(/\(\*b\)/g, '⭐(blue)')
+                .replace(/\(\*y\)/g, '⭐(yellow)')
+
+                .replace(/\(\/\)/g, '✅')
+                .replace(/\(x\)/g, '❌')
+                .replace(/\(i\)/g, 'ℹ️')
+                .replace(/\(\+\)/g, '➕')
+                .replace(/\(-\)/g, '➖')
+
+                .replace(/\(\?\)/g, '❓')
+                .replace(/<3/g, '❤️')
+                .replace(/<\/3/g, '💔')
                 // Un-Ordered Lists
                 .replace(/^[ \t]*(\*+)\s+/gm, (match, stars) => {
                     return `${Array(stars.length).join('  ')}* `;
@@ -195,6 +224,36 @@ class J2M {
                 .replace(/<([^>]+)>/g, '[$1]')
                 // Single Paragraph Blockquote
                 .replace(/^>/gm, 'bq.')
+            // Jira emoticons https://confluence.atlassian.com/doc/files/136870/947169184/1/1521512577368/Emoticons.png
+            // TODO:
+            // .replace(/:\)/g, '😊')
+            // .replace(/:\(/g, '☹️')
+            // .replace(/:p/g, '😛')
+            // .replace(/:P/g, '😛')
+            // .replace(/:D/g, '😀')
+            // .replace(/;\)/g, '😉')
+
+            // .replace(/\(y\)/g, '👍')
+            // .replace(/\(n\)/g, '👎')
+            // .replace(/\(on\)/g, '(ON)')
+            // .replace(/\(off\)/g, '(OFF)')
+            // .replace(/\(!\)/g, '⚠️')
+
+            // .replace(/\(\*\)/g, '⭐')
+            // .replace(/\(\*r\)/g, '⭐(red)')
+            // .replace(/\(\*g\)/g, '⭐(green)')
+            // .replace(/\(\*b\)/g, '⭐(blue)')
+            // .replace(/\(\*y\)/g, '⭐(yellow)')
+
+            // .replace(/\(\/\)/g, '✅')
+            // .replace(/\(x\)/g, '❌')
+            // .replace(/\(i\)/g, 'ℹ️')
+            // .replace(/\(\+\)/g, '➕')
+            // .replace(/\(-\)/g, '➖')
+
+            // .replace(/\(\?\)/g, '❓')
+            // .replace(/<3/g, '❤️')
+            // .replace(/<\/3/g, '💔')
         );
     }
 }
