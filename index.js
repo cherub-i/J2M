@@ -105,7 +105,16 @@ class J2M {
                 // Un-named Links
                 .replace(/\[([^|]+?)\]/g, '<$1>')
                 // Images
-                .replace(/!(.+)!/g, '![]($1)')
+                // .replace(/!(.+)!/g, '![]($1)')
+                .replace(/!([^|!]+)\|?(.*)!/g, ($1, $2, $3) => {
+                    let size = '';
+                    if ($3 === 'thumbnail') {
+                        size = '|200';
+                    } else if ($3.includes('width=') && $3.includes('height=')) {
+                        size = $3.replace(/width=(\d+),height=(\d+)/g, '|$1x$2');
+                    }
+                    return `![${size}](${$2})`;
+                })
                 // Named Links
                 .replace(/\[(.+?)\|(.+?)\]/g, '[$1]($2)')
                 // Single Paragraph Blockquote
@@ -221,6 +230,16 @@ class J2M {
                 .replace(/`([^`]+)`/g, '{{$1}}')
                 // Images
                 .replace(/!\[[^\]]*\]\(([^)]+)\)/g, '!$1!')
+                // TODO: enable transformation of size-information
+                // .replace(/!([^|!]+)\|?(.*)!/g, ($1, $2, $3) => {
+                //     let size = '';
+                //     if ($3 === 'thumbnail') {
+                //         size = '|200';
+                //     } else if ($3.includes('width=') && $3.includes('height=')) {
+                //         size = $3.replace(/width=(\d+),height=(\d+)/g, '|$1x$2');
+                //     }
+                //     return `![${size}](${$2})`;
+                // })
                 // Named Link
                 .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '[$1|$2]')
                 // Un-Named Link
